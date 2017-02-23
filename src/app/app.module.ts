@@ -34,6 +34,7 @@ import { CanActivateViaAuthGuard } from './login/canActivateViaAuthGuard';
 import { StoreModule } from "@ngrx/store";
 import { counterReducer } from './reducer';
 import { userReducer } from './reducers/user.reducer';
+import { leaguesReducer } from './reducers/leagues.reducer';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
@@ -50,6 +51,11 @@ type StoreType = {
   state: InternalStateType,
   restoreInputValues: () => void,
   disposeOldHosts: () => void
+};
+
+let rootReducer = {
+  user: userReducer,
+  leagues: leaguesReducer
 };
 
 /**
@@ -70,7 +76,7 @@ type StoreType = {
     FormsModule,
     HttpModule,
     RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
-    StoreModule.provideStore({ user: userReducer })
+    StoreModule.provideStore(rootReducer)
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
