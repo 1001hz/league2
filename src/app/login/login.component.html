@@ -1,0 +1,32 @@
+<div>
+  <h1>Login</h1>
+
+  <div *ngIf="(user | async)?.id">
+    Logged in as: {{ (user | async)?.username }}
+    <p (click)="onLogout()">Logout</p>
+  </div>
+
+  <div *ngIf="!(user | async)?.id">
+    <form (ngSubmit)="onSubmit($event)" #loginForm="ngForm" novalidate>
+      <div>
+        <label>Username</label>
+        <input [(ngModel)]="model.username" id="username" name="username" #username="ngModel" required />
+        <div [hidden]="username.valid || username.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+      <div>
+        <label>Password</label>
+        <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" required />
+        <div [hidden]="password.valid || password.pristine"
+             class="alert alert-danger">
+          Password is required
+        </div>
+      </div>
+      <div>
+        <button  [disabled]="!loginForm.form.valid">Login</button>
+      </div>
+    </form>
+  </div>
+</div>
