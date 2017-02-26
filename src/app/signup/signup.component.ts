@@ -13,6 +13,7 @@ interface AppState {
 
 @Component({
   templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.scss'],
   providers: [AuthService]
 })
 export class SignupComponent {

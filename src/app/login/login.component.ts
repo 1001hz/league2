@@ -16,7 +16,8 @@ interface AppState {
 @Component({
     selector: 'login',
     templateUrl: './login.component.html',
-    providers: [AuthService]
+    providers: [AuthService],
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
 

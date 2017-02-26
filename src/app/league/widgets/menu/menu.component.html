@@ -1,20 +1,34 @@
-<div>Hello {{user.firstName}}</div>
-<nav>
-  <a [routerLink]=" ['./'] "
-     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-    Leagues
-  </a>
-  <a [routerLink]=" ['./join'] "
-     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-    Join
-  </a>
-  <a [routerLink]=" ['./add'] "
-     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-    Add
-  </a>
-  <a [routerLink]=" ['./account'] "
-     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-    Account
-  </a>
-  <div (click)="logout.emit()">Logout</div>
+<nav class="menu">
+
+  <div class="menu__inner">
+    <div class="menu__profile">
+      <img src="{{user.image}}" class="menu__image" />
+
+      <div class="menu__profile-wrapper">
+      </div>
+      <div (click)="logout.emit()">Logout</div>
+    </div>
+
+    <div class="menu__item">
+      <a class="button--link" [routerLink]=" ['./'] "
+         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        Leagues
+      </a>
+    </div>
+
+    <div class="menu__item menu__item--circle">
+      <a [routerLink]=" ['./join'] "
+         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        k
+      </a>
+    </div>
+
+    <div class="menu__item menu__item--circle">
+      <a [routerLink]=" ['./add'] "
+         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+        +
+      </a>
+    </div>
+  </div>
+
 </nav>

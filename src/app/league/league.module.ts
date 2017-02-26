@@ -9,6 +9,7 @@ import { AddComponent } from './add';
 import { JoinComponent } from './join';
 import { LeagueItemComponent } from './league-item';
 import { MenuComponent } from './widgets/menu';
+import { ProfileComponent } from './widgets/profile';
 import { AuthService } from '../services/auth.service';
 import { LeagueService } from '../services/league.service';
 
@@ -20,7 +21,8 @@ import { LeagueService } from '../services/league.service';
     AddComponent,
     JoinComponent,
     MenuComponent,
-    LeagueItemComponent
+    LeagueItemComponent,
+    ProfileComponent
   ],
   imports: [
     CommonModule,

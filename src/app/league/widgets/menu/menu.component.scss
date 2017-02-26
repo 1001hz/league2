@@ -1,0 +1,51 @@
+.menu {
+
+  height: 100px;
+
+  &__inner {
+    display: inline;
+    float: right;
+  }
+
+  &__image {
+    width: 32px;
+    height: 32px;
+    display: inline-block;
+    border-radius: 50px;
+    background-color: #000;
+    border: solid 1px #fff;
+  }
+
+  &__profile {
+    display: inline-block;
+
+    &:hover {
+      .menu__profile-wrapper {
+        display: block;
+      }
+    }
+  }
+
+  &__profile-wrapper {
+    display: none;
+  }
+
+  &__item {
+    display: inline-block;
+
+    &--circle {
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      border-radius: 50px;
+      border: solid 1px #fff;
+      text-align: center;
+    }
+
+    a {
+      display: block;
+      text-decoration: none;
+      color: #fff;
+    }
+  }
+}

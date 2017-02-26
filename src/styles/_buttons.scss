@@ -1,0 +1,33 @@
+.button {
+  background-color: transparent;
+
+  &--primary {
+    background-color: $primary-red;
+    border-color: $primary-red;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+.button--link, button {
+
+  border: solid 1px $white;
+  position: relative;
+  display: inline-block;
+  height: 32px;
+  padding: 0 20px;
+  border-radius: 20px;
+  color: $white;
+  line-height: 32px;
+  cursor: pointer;
+  transition: all $base-duration $base-easing;
+  text-decoration: none;
+  text-transform: uppercase;
+
+  &:hover {
+    color: $primary-red;
+    border-color: $primary-red;
+  }
+}

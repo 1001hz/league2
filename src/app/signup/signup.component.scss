@@ -1,0 +1,20 @@
+.signup {
+
+  padding: 100px 0;
+
+  &__form-wrapper {
+    width: 300px;
+    margin: 0 auto;
+  }
+
+  &__success-wrapper {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
+    color: #fff;
+  }
+
+  &__submit-btn {
+    text-align: center;
+  }
+}
