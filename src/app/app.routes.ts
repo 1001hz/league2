@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home';
-import { AboutComponent } from './about';
+
 import { NoContentComponent } from './no-content';
 import { LoginComponent } from './login';
+import { SignupComponent } from './signup';
 
 import { DataResolver } from './app.resolver';
 
@@ -12,23 +12,15 @@ export const ROUTES: Routes = [
   { path: '',
     component: LoginComponent
   },
+  { path: 'signup',
+    component: SignupComponent
+  },
   {
     path: 'league',
-    loadChildren: './league#LeagueModule'
-  },
-  { path: 'home',
-    component: HomeComponent,
+    loadChildren: './league#LeagueModule',
     canActivate: [
       CanActivateViaAuthGuard
     ]
   },
-  { path: 'about',
-    component: AboutComponent,
-    canActivate: [
-      CanActivateViaAuthGuard
-    ]
-  },
-  { path: 'detail', loadChildren: './+detail#DetailModule'},
-  { path: 'barrel', loadChildren: './+barrel#BarrelModule'},
   { path: '**',    component: NoContentComponent },
 ];

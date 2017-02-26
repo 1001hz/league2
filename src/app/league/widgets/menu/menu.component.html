@@ -1,0 +1,20 @@
+<div>Hello {{user.firstName}}</div>
+<nav>
+  <a [routerLink]=" ['./'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Leagues
+  </a>
+  <a [routerLink]=" ['./join'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Join
+  </a>
+  <a [routerLink]=" ['./add'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Add
+  </a>
+  <a [routerLink]=" ['./account'] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Account
+  </a>
+  <div (click)="logout.emit()">Logout</div>
+</nav>

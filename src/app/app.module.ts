@@ -24,12 +24,10 @@ import { ROUTES } from './app.routes';
 import { AppComponent } from './app.component';
 import { APP_RESOLVER_PROVIDERS } from './app.resolver';
 import { AppState, InternalStateType } from './app.service';
-import { HomeComponent } from './home';
 import { LoginComponent } from './login';
-import { AboutComponent } from './about';
+import { SignupComponent } from './signup';
 import { NoContentComponent } from './no-content';
-import { XLargeDirective } from './home/x-large';
-import { AuthService } from './login/auth.service';
+import { AuthService } from './services/auth.service';
 import { CanActivateViaAuthGuard } from './login/canActivateViaAuthGuard';
 import { StoreModule } from "@ngrx/store";
 import { counterReducer } from './reducer';
@@ -65,11 +63,9 @@ let rootReducer = {
   bootstrap: [ AppComponent ],
   declarations: [
     AppComponent,
-    AboutComponent,
-    HomeComponent,
     LoginComponent,
-    NoContentComponent,
-    XLargeDirective
+    SignupComponent,
+    NoContentComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

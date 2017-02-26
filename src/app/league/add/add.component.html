@@ -1,0 +1,33 @@
+<h1>Add a new league</h1>
+
+<div>
+  <form (ngSubmit)="onSave($event)" #addLeagueForm="ngForm" novalidate>
+    <div>
+      <label>League Name</label>
+      <input [(ngModel)]="model.name" id="name" name="name" #name="ngModel" required />
+      <div [hidden]="name.valid || name.pristine"
+           class="alert alert-danger">
+        Name is required
+      </div>
+    </div>
+    <div>
+      <label>Start Date</label>
+      <input [(ngModel)]="model.startDate" id="startDate" name="startDate" #startDate="ngModel" required />
+      <div [hidden]="startDate.valid || startDate.pristine"
+           class="alert alert-danger">
+        Start Date is required
+      </div>
+    </div>
+    <div>
+      <label>Round Length (days)</label>
+      <input [(ngModel)]="model.period" id="period" name="period" #period="ngModel" required />
+      <div [hidden]="period.valid || period.pristine"
+           class="alert alert-danger">
+        Round Length is required
+      </div>
+    </div>
+    <div>
+      <button  [disabled]="!addLeagueForm.form.valid">Save</button>
+    </div>
+  </form>
+</div>

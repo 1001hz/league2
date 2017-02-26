@@ -1,0 +1,13 @@
+<h1>Dashboard</h1>
+
+<div *ngIf="(leagues | async).length === 0">
+  No Leagues
+</div>
+
+<div *ngFor="let league of leagues | async">
+  <div>
+    <a routerLink="item/{{league.id}}">
+      {{league.name}}
+    </a>
+    </div>
+</div>

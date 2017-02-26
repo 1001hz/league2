@@ -1,16 +1,15 @@
 import { ActionReducer, Action } from '@ngrx/store';
-import { User } from '../models/user.model';
+import { League } from '../models/league.model';
 
-export const SET = 'SET';
-export const RESET = 'RESET';
+export const ADD = 'ADD';
 
-export function leaguesReducer(state: User = new User(), action: Action) {
+export function leaguesReducer(state: Array<League> = [], action: Action) {
   switch (action.type) {
-    case SET:
-      return Object.assign({}, state, action.payload );
-
-    case RESET:
-      return {};
+    case ADD:
+      return [
+        ...state,
+        Object.assign({}, action.payload)
+      ];
 
     default:
       return state;

@@ -1,0 +1,46 @@
+<div *ngIf=" isSuccessful | async ">
+  <p>Successfully signed up</p>
+  <a [routerLink]=" [''] "
+     routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+    Login
+  </a>
+</div>
+<div *ngIf=" !(isSuccessful | async) ">
+<form (ngSubmit)="onSignup($event)" #signupForm="ngForm" novalidate>
+  <div>
+    <label>Username</label>
+    <input [(ngModel)]="model.username" id="username" name="username" #username="ngModel" required />
+    <div [hidden]="username.valid || username.pristine"
+         class="alert alert-danger">
+      Username is required
+    </div>
+  </div>
+  <div>
+    <label>First Name</label>
+    <input [(ngModel)]="model.firstName" id="firstName" name="firstName" #firstName="ngModel" required />
+    <div [hidden]="firstName.valid || firstName.pristine"
+         class="alert alert-danger">
+      First Name is required
+    </div>
+  </div>
+  <div>
+    <label>Last Name</label>
+    <input [(ngModel)]="model.lastName" id="lastName" name="lastName" #lastName="ngModel" required />
+    <div [hidden]="lastName.valid || lastName.pristine"
+         class="alert alert-danger">
+      Last Name is required
+    </div>
+  </div>
+  <div>
+    <label>Password</label>
+    <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" required />
+    <div [hidden]="password.valid || password.pristine"
+         class="alert alert-danger">
+      Password is required
+    </div>
+  </div>
+  <div>
+    <button  [disabled]="!signupForm.form.valid">Sign up</button>
+  </div>
+</form>
+</div>

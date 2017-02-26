@@ -1,15 +1,17 @@
-import {NgModule, Component} from '@angular/core';
-import {RouterModule} from '@angular/router';
-import {NameComponent} from './name';
-import {AccountComponent} from './account.component';
-import {ROUTES} from './account.routes';
+import { NgModule, Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { AccountComponent } from './account.component';
+import { ROUTES } from './account.routes';
 
 @NgModule({
   declarations: [
     // Components / Directives/ Pipes
-    AccountComponent,
-    NameComponent
+    AccountComponent
   ],
-  imports: [RouterModule.forChild(ROUTES)]
+  imports: [
+    FormsModule,
+    RouterModule.forChild(ROUTES)
+  ]
 })
 export class AccountModule {}
