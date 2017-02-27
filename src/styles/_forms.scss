@@ -12,7 +12,18 @@ input[type=text], input[type=password] {
 
 .form {
 
+  &__wrapper {
+    width: 300px;
+    margin: 0 auto;
+  }
+
   &__element {
     padding: 0 0 30px 0;
+  }
+
+  &__button-wrapper {
+    width: 300px;
+    margin: 0 auto;
+    text-align: center;
   }
 }

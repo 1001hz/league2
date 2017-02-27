@@ -2,6 +2,38 @@
 
 $base-font: 'Roboto', sans-serif;
 * {
-  font-size: $base-font-size;
   font-family: $base-font;
+}
+
+p{
+  font-size: $base-font-size;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $white;
+  text-transform: uppercase;
+  a {
+    color: $primary-red;
+    text-decoration: none;
+    &:hover {
+      color: darken($primary-red, 10%);
+    }
+  }
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 16px;
+}
+
+
+.center-text {
+  text-align: center;
 }

@@ -1,34 +1,28 @@
 <nav class="menu">
 
-  <div class="menu__inner">
-    <div class="menu__profile">
-      <img src="{{user.image}}" class="menu__image" />
-
-      <div class="menu__profile-wrapper">
-      </div>
-      <div (click)="logout.emit()">Logout</div>
-    </div>
-
-    <div class="menu__item">
+  <ul>
+    <li>
+      <a class="button--link" [routerLink]=" ['./account'] "
+         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Account</a>
+    </li>
+    <li>
       <a class="button--link" [routerLink]=" ['./'] "
          routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         Leagues
       </a>
-    </div>
-
-    <div class="menu__item menu__item--circle">
+    </li>
+    <li>
       <a [routerLink]=" ['./join'] "
          routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        k
+        Join
       </a>
-    </div>
-
-    <div class="menu__item menu__item--circle">
+    </li>
+    <li>
       <a [routerLink]=" ['./add'] "
          routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        +
+        Add
       </a>
-    </div>
-  </div>
+    </li>
+  </ul>
 
 </nav>

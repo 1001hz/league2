@@ -2,9 +2,16 @@
 
   height: 100px;
 
-  &__inner {
-    display: inline;
+  ul {
+    margin: 0;
+    padding: 0;
     float: right;
+
+    li {
+      margin: 0;
+      padding: 0;
+      display: inline;
+    }
   }
 
   &__image {

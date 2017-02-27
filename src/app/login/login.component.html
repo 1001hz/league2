@@ -5,7 +5,7 @@
     <p (click)="onLogout()">Logout</p>
   </div>
 
-  <div *ngIf="!(user | async)?.id" class="login__form-wrapper">
+  <div *ngIf="!(user | async)?.id" class="form__wrapper">
     <form (ngSubmit)="onSubmit($event)" #loginForm="ngForm" novalidate class="form">
       <div class="form__element">
         <label>Username</label>
@@ -23,14 +23,16 @@
           Password is required
         </div>
       </div>
-      <div class="form__element login__submit-btn">
+      <div class="form__element form__button-wrapper">
         <button class="button button--primary" [disabled]="!loginForm.form.valid">Login</button>
       </div>
     </form>
-  </div>
-  <div class="login__sign-up">
-    <a [routerLink]=" ['./signup'] " class="button--link">
-      Sign up
-    </a>
+
+    <div class="form__button-wrapper">
+      <a [routerLink]=" ['./signup'] " class="button--link">
+        Sign up
+      </a>
+    </div>
+
   </div>
 </div>

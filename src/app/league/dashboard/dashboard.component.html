@@ -1,13 +1,13 @@
-<h1>Dashboard</h1>
 
-<div *ngIf="(leagues | async).length === 0">
-  No Leagues
-</div>
+<div class="dashboard content">
 
-<div *ngFor="let league of leagues | async">
-  <div>
-    <a routerLink="item/{{league.id}}">
-      {{league.name}}
-    </a>
-    </div>
+  <div *ngIf="(leagues | async).length === 0" class="center-text dashboard__no-league">
+    <h2>No Leagues yet</h2>
+    <h4>Start <a [routerLink]=" ['./add'] ">your own league</a> and invite your friends</h4>
+  </div>
+
+  <div *ngFor="let league of leagues | async" class="dashboard__league-item">
+    <league-summary [league]="league"></league-summary>
+  </div>
+
 </div>

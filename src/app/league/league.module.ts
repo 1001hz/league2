@@ -12,6 +12,7 @@ import { MenuComponent } from './widgets/menu';
 import { ProfileComponent } from './widgets/profile';
 import { AuthService } from '../services/auth.service';
 import { LeagueService } from '../services/league.service';
+import { LeagueSummaryComponent } from './widgets/league-summary';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LeagueService } from '../services/league.service';
     JoinComponent,
     MenuComponent,
     LeagueItemComponent,
-    ProfileComponent
+    ProfileComponent,
+    LeagueSummaryComponent
   ],
   imports: [
     CommonModule,
