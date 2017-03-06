@@ -1,16 +1,16 @@
 <div class="login">
 
   <div *ngIf="(user | async)?.id" class="login__logged-in">
-    Logged in as: {{ (user | async)?.username }}
+    Logged in as: {{ (user | async)?.email }}
     <p (click)="onLogout()">Logout</p>
   </div>
 
   <div *ngIf="!(user | async)?.id" class="form__wrapper">
     <form (ngSubmit)="onSubmit($event)" #loginForm="ngForm" novalidate class="form">
       <div class="form__element">
-        <label>Username</label>
-        <input [(ngModel)]="model.username" id="username" name="username" #username="ngModel" type="text" required />
-        <div [hidden]="username.valid || username.pristine"
+        <label>email</label>
+        <input [(ngModel)]="model.email" id="email" name="email" #email="ngModel" type="text" required />
+        <div [hidden]="email.valid || email.pristine"
              class="alert alert-danger">
           Name is required
         </div>
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="form__element form__button-wrapper">
-        <button class="button button--primary" [disabled]="!loginForm.form.valid">Login</button>
+        <button type="submit" class="button button--primary" [disabled]="!loginForm.form.valid">Login</button>
       </div>
     </form>
 

@@ -1,5 +1,6 @@
 <nav class="menu">
-
+  <img src="{{ user.avatar }}" />
+  <h3>Hello {{ user.email }}</h3>
   <ul>
     <li>
       <a class="button--link" [routerLink]=" ['./account'] "

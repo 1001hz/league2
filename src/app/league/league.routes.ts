@@ -3,6 +3,7 @@ import { LeagueItemComponent } from './league-item';
 import { DashboardComponent } from './dashboard';
 import { JoinComponent } from './join';
 import { AddComponent } from './add';
+import { LeaguesResolve } from '../resolvers/leagues.resolver';
 
 export const routes = [
   { path: '',

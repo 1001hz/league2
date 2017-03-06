@@ -22,7 +22,7 @@ export class SignupComponent {
   public isSuccessful;
 
   constructor(private _authService: AuthService){
-
+    console.log(this.model);
   }
 
   onSignup($event) {

@@ -11,11 +11,11 @@
   <div *ngIf=" !(isSuccessful | async) " class="signup__form-wrapper">
     <form (ngSubmit)="onSignup($event)" #signupForm="ngForm" novalidate class="form">
       <div  class="form__element">
-        <label>Username</label>
-        <input [(ngModel)]="model.username" id="username" name="username" #username="ngModel" required type="text" />
-        <div [hidden]="username.valid || username.pristine"
+        <label>email</label>
+        <input [(ngModel)]="model.email" id="email" name="email" #email="ngModel" required type="text" />
+        <div [hidden]="email.valid || email.pristine"
              class="alert alert-danger">
-          Username is required
+          Email is required
         </div>
       </div>
       <div class="form__element">

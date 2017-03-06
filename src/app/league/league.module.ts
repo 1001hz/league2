@@ -13,6 +13,8 @@ import { ProfileComponent } from './widgets/profile';
 import { AuthService } from '../services/auth.service';
 import { LeagueService } from '../services/league.service';
 import { LeagueSummaryComponent } from './widgets/league-summary';
+import { PieChartComponent } from './widgets/pie-chart';
+import { LeaguesResolve } from '../resolvers/leagues.resolver';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { LeagueSummaryComponent } from './widgets/league-summary';
     MenuComponent,
     LeagueItemComponent,
     ProfileComponent,
-    LeagueSummaryComponent
+    LeagueSummaryComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +36,8 @@ import { LeagueSummaryComponent } from './widgets/league-summary';
   ],
   providers: [
     AuthService,
-    LeagueService
+    LeagueService,
+    LeaguesResolve
   ]
 })
 export class LeagueModule {}

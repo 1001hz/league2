@@ -1,3 +1,11 @@
 .league-summary {
 
+  h2 {
+    text-align: center;
+  }
+
+  &__time-remaining-wrapper {
+    width: 100px;
+    margin: 0 auto;
+  }
 }
