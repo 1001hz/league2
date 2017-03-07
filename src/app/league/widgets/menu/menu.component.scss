@@ -1,58 +1,53 @@
 .menu {
 
-  height: 100px;
+  height: 40px;
+  background-color: #fff;
 
-  ul {
-    margin: 0;
-    padding: 0;
+  &__inner {
     float: right;
+    position: relative;
+    height: 40px;
+  }
 
-    li {
-      margin: 0;
-      padding: 0;
-      display: inline;
-    }
+  &__avatar-wrapper {
+    padding: 0 5px;
+    display: inline-block;
+  }
+
+  &__league-btn-wrapper {
+    padding: 0 5px;
+    display: inline-block;
   }
 
   &__image {
-    width: 32px;
-    height: 32px;
-    display: inline-block;
-    border-radius: 50px;
-    background-color: #000;
-    border: solid 1px #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 36px;
+    border: solid #CCC 3px;
   }
 
-  &__profile {
-    display: inline-block;
-
-    &:hover {
-      .menu__profile-wrapper {
-        display: block;
-      }
-    }
-  }
-
-  &__profile-wrapper {
+  &__list {
+    top: 40px;
+    position: absolute;
     display: none;
+    background-color: #fff;
+    list-style: none;
+    padding: 0;
+
+    &--open {
+      display: block;
+    }
+
+    &--league {
+      right: 50px;
+    }
+
+    &--account {
+      right: 10px;
+    }
   }
 
-  &__item {
-    display: inline-block;
-
-    &--circle {
-      width: 32px;
-      height: 32px;
-      line-height: 32px;
-      border-radius: 50px;
-      border: solid 1px #fff;
-      text-align: center;
-    }
-
-    a {
-      display: block;
-      text-decoration: none;
-      color: #fff;
-    }
+  &__list-item {
+    padding: 20px;
   }
 }

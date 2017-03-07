@@ -1,30 +1,52 @@
 <nav class="menu">
-  <img src="{{ user.avatar }}" />
-  <h3>Hello {{ user.email }}</h3>
-  Hey {{user.info.firstName}}
-  <ul>
-    <li>
-      <a class="button--link" [routerLink]=" ['./account'] "
-         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Account</a>
-    </li>
-    <li>
-      <a class="button--link" [routerLink]=" ['./'] "
-         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Leagues
-      </a>
-    </li>
-    <li>
-      <a [routerLink]=" ['./join'] "
-         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Join
-      </a>
-    </li>
-    <li>
-      <a [routerLink]=" ['./add'] "
-         routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
-        Add
-      </a>
-    </li>
-  </ul>
+  <div class="menu__inner">
 
+    <div class="menu__league-btn-wrapper" (click)="onToggleLeagueMenu()">
+      <div class="menu__league-btn">League</div>
+    </div>
+
+    <ul class="menu__list menu__list--league" [ngClass]="{'menu__list--open' : leagueMenuOpen}">
+
+      <li class="menu__list-item">
+        <a [routerLink]=" ['./'] "
+           routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+          Leagues
+        </a>
+      </li>
+      <li class="menu__list-item">
+        <a [routerLink]=" ['./join'] "
+           routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+          Join
+        </a>
+      </li>
+      <li class="menu__list-item">
+        <a [routerLink]=" ['./add'] "
+           routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+          Add
+        </a>
+      </li>
+    </ul>
+
+    <div class="menu__avatar-wrapper" (click)="onToggleAccountMenu()">
+      <img src="{{ user.avatar }}" class="menu__image" />
+    </div>
+
+    <ul class="menu__list menu__list--account" [ngClass]="{'menu__list--open' : accountMenuOpen}">
+      <li class="menu__list-item">
+        <div>
+          <img src="{{ user.avatar }}" class="menu__image menu__image--large" />
+        </div>
+        <p>
+          Hi {{user.info.firstName}}
+        </p>
+      </li>
+      <li class="menu__list-item">
+        <a [routerLink]=" ['./account'] "
+           routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Account</a>
+      </li>
+      <li class="menu__list-item">
+        <a>Logout</a>
+      </li>
+    </ul>
+  </div>
 </nav>
