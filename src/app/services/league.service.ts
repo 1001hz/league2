@@ -7,7 +7,7 @@ import { User } from '../models/user.model';
 // state
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-import { ADD } from '../reducers/leagues.reducer';
+import { ADD_LEAGUE } from '../reducers/leagues.reducer';
 
 interface AppState {
   leagues: Array<League>;
@@ -43,7 +43,7 @@ export class LeagueService {
     league.id = 1;
 
     // set in app data store
-    this.store.dispatch({ type: ADD, payload: league });
+    this.store.dispatch({ type: ADD_LEAGUE, payload: league });
 
     this.router.navigateByUrl('league');
   }

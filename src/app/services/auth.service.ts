@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
 // models
 import { Login } from '../models/login.model';
 import { User } from '../models/user.model';
@@ -8,16 +7,13 @@ import { League } from '../models/league.model';
 // state
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-import { SET, RESET } from '../reducers/user.reducer';
-import { ADD } from '../reducers/leagues.reducer';
-
-// debugging
-import { AsyncSubject } from 'rxjs/Rx';
+import { SET_USER, RESET_USER } from '../reducers/user.reducer';
+import { ADD_LEAGUE } from '../reducers/leagues.reducer';
+// services
+import { ApiService } from './api.service';
 
 interface AppState {
   user: User;
-}
-interface LeagueAppState {
   league: League;
 }
 
@@ -25,13 +21,16 @@ interface LeagueAppState {
 export class AuthService {
 
   user: User;
-  private apiUrl;
 
-  constructor(private store: Store<AppState>, private leagueStore: Store<LeagueAppState>, private router: Router, private http: Http) {
+  constructor(private store: Store<AppState>, private router: Router, private apiS: ApiService) {
+    // get current logged in user
     store.select('user').subscribe(u => this.user = u );
-    this.apiUrl = 'http://188.166.240.71';
   }
 
+  /**
+   * Check if user is logged in
+   * @returns {boolean}
+   */
   isLoggedIn() {
     if(this.user.id){
       return true;
@@ -39,62 +38,73 @@ export class AuthService {
     return false;
   }
 
+  /**
+  * Create a new account
+   */
   signup(newUser: User) {
-    // send data to server
-    let bodyString = JSON.stringify(newUser); // Stringify payload
-    let headers      = new Headers({ 'Content-Type': 'application/json' });
-    let options       = new RequestOptions({ headers: headers });
-
-    return this.http.post(this.apiUrl + '/users', bodyString, options)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')).share();
-
+    return this.apiS.postApi('/users', newUser, false).share();
   }
 
+  /**
+   * Login, set store with returned user, get extra user info, save extra info to store
+   * @param credentials
+   */
   login(credentials: Login) {
-    // send data to server
-    let credentialsString = JSON.stringify(credentials); // Stringify payload
-    let headers      = new Headers({ 'Content-Type': 'application/json' });
-    let options       = new RequestOptions({ headers: headers });
 
-    var ob = this.http.post(this.apiUrl + '/authenticate', credentials, options)
-      .flatMap((res:Response) => {
-        var _res = res.json();
+    // login
+    var authenticate$ = this.apiS.postApi('/authenticate', credentials, false)
+      .flatMap((response) => {
+
+        // create user object from returned data
         var user = new User(
-          _res.user.id,
-          _res.user.email,
-          _res.user.email,
-          _res.user.email,
+          response.user.id,
           null,
-          _res.user.avatar.small,
-          _res.token
+          response.user.info.firstName,
+          response.user.info.lastName,
+          null,
+          response.user.avatar.small,
+          response.token
         );
-        this.store.dispatch({ type: SET, payload: user });
 
-        let headers2      = new Headers({ 'Content-Type': 'application/json', 'X-Access-Token': user.token});
-        let options2       = new RequestOptions({ headers: headers2 });
-        return this.http.get(this.apiUrl + '/users/'+user.id, options2)
+        // store user
+        this.store.dispatch({ type: SET_USER, payload: user });
+
+        // get extra user info
+        return this.apiS.getApi('/users/'+user.id)
       })
-      .map((res: Response) => {
-        return res.json();
-      })
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')).share();
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'))
+      .share();
 
 
-    ob.subscribe( _res => {
+    // subscribe to observible to call it
+    authenticate$.subscribe( user => {
 
-      _res.ownedLeagues.map( league => {
+      user.ownedLeagues.map(league => {
+        // extract user's leagues from user data
         var _league = new League (league.id, league.name, null, null);
-        this.leagueStore.dispatch({ type: ADD, payload: _league });
+
+        // store user's league data (subset of full league data)
+        this.store.dispatch({ type: ADD_LEAGUE, payload: _league });
       });
 
+      // redirect to dashboard
       this.router.navigateByUrl('league');
 
-    } );
+    });
+
   }
 
+  /**
+   * Logout from server and clear store
+   */
   logout() {
-    this.store.dispatch({ type: RESET });
+
+    //TODO: Sent logout request to server
+
+    // clear store
+    this.store.dispatch({ type: RESET_USER });
+
+    // redirect to login page
     this.router.navigateByUrl('');
   }
 }

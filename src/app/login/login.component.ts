@@ -30,7 +30,6 @@ export class LoginComponent {
 
   onSubmit($event) {
     $event.preventDefault();
-    console.log("Hello");
     this._authService.login(this.model);
   }
 

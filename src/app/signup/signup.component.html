@@ -1,6 +1,6 @@
 <div class="signup">
 
-  <div *ngIf=" isSuccessful | async " class="signup__success-wrapper">
+  <div *ngIf="isSuccessful" class="signup__success-wrapper">
     <p>Successfully signed up.</p>
     <a class="button--link" [routerLink]=" [''] "
        routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
@@ -8,7 +8,7 @@
     </a>
   </div>
 
-  <div *ngIf=" !(isSuccessful | async) " class="signup__form-wrapper">
+  <div *ngIf=" !(isSuccessful) " class="signup__form-wrapper">
     <form (ngSubmit)="onSignup($event)" #signupForm="ngForm" novalidate class="form">
       <div  class="form__element">
         <label>email</label>
@@ -20,7 +20,7 @@
       </div>
       <div class="form__element">
         <label>First Name</label>
-        <input [(ngModel)]="model.firstName" id="firstName" name="firstName" #firstName="ngModel" required type="text" />
+        <input [(ngModel)]="model.info.firstName" id="firstName" name="firstName" #firstName="ngModel" required type="text" />
         <div [hidden]="firstName.valid || firstName.pristine"
              class="alert alert-danger">
           First Name is required
@@ -28,7 +28,7 @@
       </div>
       <div class="form__element">
         <label>Last Name</label>
-        <input [(ngModel)]="model.lastName" id="lastName" name="lastName" #lastName="ngModel" required type="text" />
+        <input [(ngModel)]="model.info.lastName" id="lastName" name="lastName" #lastName="ngModel" required type="text" />
         <div [hidden]="lastName.valid || lastName.pristine"
              class="alert alert-danger">
           Last Name is required
@@ -42,8 +42,19 @@
           Password is required
         </div>
       </div>
+      <div class="form__element">
+        <label>Country</label>
+        <input [(ngModel)]="model.info.country" id="country" name="country" #country="ngModel" required type="text" />
+        <div [hidden]="country.valid || country.pristine"
+             class="alert alert-danger">
+          Country is required
+        </div>
+      </div>
       <div class="form__element signup__submit-btn">
         <button class="button button--primary" [disabled]="!signupForm.form.valid">Sign up</button>
+      </div>
+      <div *ngIf="validationError">
+        {{validationError}}
       </div>
     </form>
   </div>

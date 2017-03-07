@@ -19,7 +19,8 @@ interface AppState {
 export class SignupComponent {
 
   model = new User();
-  public isSuccessful;
+  public isSuccessful: boolean;
+  public validationError: string;
 
   constructor(private _authService: AuthService){
     console.log(this.model);
@@ -27,6 +28,15 @@ export class SignupComponent {
 
   onSignup($event) {
     $event.preventDefault();
-    this.isSuccessful = this._authService.signup(this.model);
+
+    this._authService.signup(this.model)
+      .subscribe( res => {
+      this.isSuccessful = true;
+    }, errorMessage => {
+        console.log(errorMessage);
+      this.validationError = errorMessage;
+    });
+
+
   }
 }

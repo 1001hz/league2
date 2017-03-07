@@ -1,10 +1,5 @@
 <div class="login">
 
-  <div *ngIf="(user | async)?.id" class="login__logged-in">
-    Logged in as: {{ (user | async)?.email }}
-    <p (click)="onLogout()">Logout</p>
-  </div>
-
   <div *ngIf="!(user | async)?.id" class="form__wrapper">
     <form (ngSubmit)="onSubmit($event)" #loginForm="ngForm" novalidate class="form">
       <div class="form__element">

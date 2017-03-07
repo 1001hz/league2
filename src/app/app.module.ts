@@ -28,6 +28,7 @@ import { LoginComponent } from './login';
 import { SignupComponent } from './signup';
 import { NoContentComponent } from './no-content';
 import { AuthService } from './services/auth.service';
+import { ApiService } from './services/api.service';
 import { CanActivateViaAuthGuard } from './login/canActivateViaAuthGuard';
 import { StoreModule } from "@ngrx/store";
 import { counterReducer } from './reducer';
@@ -42,6 +43,7 @@ const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
   AppState,
   AuthService,
+  ApiService,
   CanActivateViaAuthGuard
 ];
 

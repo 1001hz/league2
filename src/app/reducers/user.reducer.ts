@@ -1,15 +1,15 @@
 import { ActionReducer, Action } from '@ngrx/store';
 import { User } from '../models/user.model';
 
-export const SET = 'SET';
-export const RESET = 'RESET';
+export const SET_USER = 'SET_USER';
+export const RESET_USER = 'RESET_USER';
 
 export function userReducer(state: User = new User(), action: Action) {
   switch (action.type) {
-    case SET:
+    case SET_USER:
       return Object.assign({}, state, action.payload );
 
-    case RESET:
+    case RESET_USER:
       return {};
 
     default:

@@ -5,7 +5,7 @@ import { User } from '../models/user.model';
 // state
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-import { SET } from '../reducers/user.reducer';
+import { SET_USER } from '../reducers/user.reducer';
 
 interface AppState {
   user: User;
@@ -24,6 +24,6 @@ export class UserService {
     console.log(user);
 
     // set user in app data store
-    this.store.dispatch({ type: SET, payload: user });
+    this.store.dispatch({ type: SET_USER, payload: user });
   }
 }
