@@ -31,6 +31,7 @@ export function leaguesReducer(state: Array<League> = initialState, action: Acti
 export const leagueSummaryModel = () => {
   return state => state
     .map((leagues) => {
+      // TODO: remove, demo only
       return leagues.map( l => {
         l.test = '2 days';
         return l;
@@ -41,10 +42,10 @@ export const leagueSummaryModel = () => {
 export const leagueSingleModel = (leagueId) => {
   return state => state
     .map((leagues) => {
-      return leagues.filter( l => {
-        if(l.id === leagueId) {
-          return l;
-        }
-      });
+      // get single item from leagues array
+      return leagues.filter( (l) => {
+        return l.id === leagueId;
+      })[0];
+
     })
 };

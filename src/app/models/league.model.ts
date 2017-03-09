@@ -11,6 +11,7 @@ export class League {
   public participants: Array<User>;
   public settings: LeagueSettings;
   public updatedAt: string;
+  public nextRound: NextRound;
 
   constructor() {
   }
@@ -21,8 +22,8 @@ export class League {
     this.inviteToken = serverObj.inviteToken;
 
     this.invites = [];
-    for(var i=0; i<serverObj.invites; i++){
-      let user = new User();
+    for(var i=0; i<serverObj.invites.length; i++){
+      var user = new User();
       user.makeFromServer(serverObj.invites[i]);
       this.invites.push(user);
     }
@@ -33,8 +34,10 @@ export class League {
     this.ownedByUser.makeFromServer(serverObj.ownedByUser);
 
     this.participants = [];
-    for(var i=0; i<serverObj.participants; i++){
-      let participant = new User();
+    this.participants.push(this.ownedByUser);
+    for(var i=0; i<serverObj.participants.length; i++){
+      var participant = new User();
+      console.log(participant);
       participant.makeFromServer(serverObj.participants[i]);
       this.participants.push(participant);
     }
@@ -43,6 +46,9 @@ export class League {
     this.settings.makeFromServer(serverObj.settings);
 
     this.updatedAt = serverObj.updatedAt;
+
+    this.nextRound = new NextRound();
+    this.nextRound.makeFromServer(serverObj.nextRound);
   }
 }
 
@@ -65,7 +71,8 @@ export class LeagueSettings {
     this.startDate = settingsFromServer.startDate;
     this.timezone = settingsFromServer.timezone;
     this.updatedAt = settingsFromServer.updatedAt;
-    this.releaseTypes = settingsFromServer.releaseTypes;
+    this.releaseTypes = new ReleaseTypes();
+    this.releaseTypes.makeFromServer(settingsFromServer.releaseTypes);
   }
 }
 
@@ -78,7 +85,24 @@ export class ReleaseTypes {
 
   }
 
-  makeFromServer() {
+  makeFromServer(releaseTypes) {
+    this.albums = releaseTypes.albums;
+    this.singles = releaseTypes.singles;
+    this.tracks = releaseTypes.tracks;
+  }
+}
 
+
+export class NextRound {
+  public notReady: Array<string>;
+  public ready: Array<string>;
+
+  constructor() {
+
+  }
+
+  makeFromServer(dataFromServer) {
+    this.notReady = dataFromServer.notReady;
+    this.ready = dataFromServer.ready;
   }
 }

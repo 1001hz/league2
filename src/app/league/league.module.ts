@@ -10,6 +10,7 @@ import { JoinComponent } from './join';
 import { LeagueItemComponent } from './league-item';
 import { MenuComponent } from './widgets/menu';
 import { ProfileComponent } from './widgets/profile';
+import { ParticipantComponent } from './widgets/participant';
 import { AuthService } from '../services/auth.service';
 import { LeagueService } from '../services/league.service';
 import { LeagueSummaryComponent } from './widgets/league-summary';
@@ -27,7 +28,8 @@ import { LeagueResolve } from '../resolvers/league.resolver';
     LeagueItemComponent,
     ProfileComponent,
     LeagueSummaryComponent,
-    PieChartComponent
+    PieChartComponent,
+    ParticipantComponent
   ],
   imports: [
     CommonModule,

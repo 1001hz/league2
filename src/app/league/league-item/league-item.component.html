@@ -1,2 +1,17 @@
-<h1>{{league.name | async}}</h1>
-{{league | async | json}}
+<h1>{{ league.name }}</h1>
+{{league | json }}
+<p>Invite code: {{ league.inviteToken }}</p>
+
+<h3>This round</h3>
+
+<h3>Rankings</h3>
+
+<h3>Previous Rounds</h3>
+
+<h3>Participants</h3>
+<ul>
+  <li *ngFor="let participant of league.participants">
+    <participant [participant]="participant"></participant>
+  </li>
+</ul>
+

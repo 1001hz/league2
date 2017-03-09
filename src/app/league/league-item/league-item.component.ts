@@ -1,20 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { League, leagueSingleModel } from '../../models/league.model';
+import { League } from '../../models/league.model';
+import { leagueSingleModel } from '../../reducers/leagues.reducer';
 import { Store } from '@ngrx/store';
 
 interface AppState {
-  user: League;
+  league: League;
 }
 
 @Component({
   templateUrl: './league-item.component.html'
 })
-export class LeagueItemComponent{
+export class LeagueItemComponent implements OnInit{
 
   public league;
 
   constructor(private store: Store<AppState>, private route: ActivatedRoute) {
-    this.league = store.select('leagues').let(leagueSingleModel(route.params['id']));
+
+  }
+
+  ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.store.select('leagues').let(leagueSingleModel(params['id'])).subscribe( l => this.league = l);
+    });
   }
 }
