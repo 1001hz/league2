@@ -56,15 +56,18 @@ export class AuthService {
       .flatMap((response) => {
 
         // create user object from returned data
-        var user = new User(
-          response.user.id,
-          null,
-          response.user.info.firstName,
-          response.user.info.lastName,
-          null,
-          response.user.avatar.small,
-          response.token
-        );
+        //var user = new User(
+        //  response.user.id,
+        //  null,
+        //  response.user.info.firstName,
+        //  response.user.info.lastName,
+        //  null,
+        //  response.user.avatar.small,
+        //  response.token
+        //);
+        var user = new User();
+        user.makeFromServer(response.user);
+        user.setToken(response.token);
 
         // store user
         this.store.dispatch({ type: SET_USER, payload: user });
@@ -81,7 +84,9 @@ export class AuthService {
 
       user.ownedLeagues.map(league => {
         // extract user's leagues from user data
-        var _league = new League (league.id, league.name, null, null);
+        var _league = new League ();
+        _league.id = league.id;
+        _league.name = league.name;
 
         // store user's league data (subset of full league data)
         this.store.dispatch({ type: ADD_LEAGUE, payload: _league });

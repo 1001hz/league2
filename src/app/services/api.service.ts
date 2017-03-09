@@ -17,16 +17,15 @@ export class ApiService {
 
   constructor(private store: Store<AppState>, public http: Http) {
 
-    this.headers = new Headers({ 'Content-Type': 'application/json' });
-
     // get user for API token parameter
-    store.select('user').subscribe(u => this.token = u.token );
+    store.select('user').subscribe( (u) => this.token = u.token );
 
     this.apiUrl = 'http://188.166.240.71';
   }
 
   getApi(endpoint, isPrivate:boolean = true) {
 
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
     if(isPrivate && this.token) {
       // protected routes need token
       this.headers.append('X-Access-Token', this.token);
@@ -41,6 +40,7 @@ export class ApiService {
 
   postApi(endpoint, data, isPrivate:boolean = true) {
 
+    this.headers = new Headers({ 'Content-Type': 'application/json' });
     if(isPrivate && this.token) {
       // protected routes need token
       this.headers.append('X-Access-Token', this.token);

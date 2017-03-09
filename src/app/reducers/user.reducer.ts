@@ -7,10 +7,10 @@ export const RESET_USER = 'RESET_USER';
 export function userReducer(state: User = new User(), action: Action) {
   switch (action.type) {
     case SET_USER:
-      return Object.assign({}, state, action.payload );
+      return Object.assign(new User(), state, action.payload );
 
     case RESET_USER:
-      return {};
+      return new User();
 
     default:
       return state;

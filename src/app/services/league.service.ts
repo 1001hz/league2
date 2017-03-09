@@ -7,7 +7,9 @@ import { User } from '../models/user.model';
 // state
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-import { ADD_LEAGUE } from '../reducers/leagues.reducer';
+import { ADD_LEAGUE, UPDATE_LEAGUE } from '../reducers/leagues.reducer';
+// services
+import { ApiService } from './api.service';
 
 interface AppState {
   leagues: Array<League>;
@@ -20,20 +22,22 @@ export class LeagueService {
 
   constructor(
     private store: Store<AppState>,
-    public http: Http,
+    public apiS: ApiService,
     private router: Router
   ) {
-    this.apiUrl = 'http://188.166.240.71';
   }
 
-  getMyLeagues(user: User) {
+  getLeagueById(id: string) {
+    return this.apiS.getApi('/leagues/'+id)
+      .map( (league) => {
+        var _league = new League();
+        _league.makeFromServer(league);
 
-    let headers      = new Headers({ 'Content-Type': 'application/json', 'X-Access-Token': user.token});
-    let options       = new RequestOptions({ headers: headers });
+        this.store.dispatch({ type: UPDATE_LEAGUE, payload: _league });
 
-    return this.http.get(this.apiUrl + '/leagues', options)
-      .map((res:Response) => res.json())
-      .catch((error:any) => Observable.throw(error.json().error || 'Server error')).share();
+        return _league;
+      })
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   addNewLeague(league: League) {

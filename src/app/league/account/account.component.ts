@@ -21,7 +21,9 @@ export class AccountComponent {
   public model = new User();
   constructor(private _userService: UserService, private store: Store<AppState>){
 
-    store.select('user').subscribe( u => this.model = Object.assign({}, u ) );
+    store.select('user').subscribe( (u) => {
+      this.model = Object.assign({}, u )
+    } );
   }
 
   onSubmit($event) {

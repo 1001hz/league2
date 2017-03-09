@@ -14,7 +14,7 @@ import { AuthService } from '../services/auth.service';
 import { LeagueService } from '../services/league.service';
 import { LeagueSummaryComponent } from './widgets/league-summary';
 import { PieChartComponent } from './widgets/pie-chart';
-import { LeaguesResolve } from '../resolvers/leagues.resolver';
+import { LeagueResolve } from '../resolvers/league.resolver';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { LeaguesResolve } from '../resolvers/leagues.resolver';
   providers: [
     AuthService,
     LeagueService,
-    LeaguesResolve
+    LeagueResolve
   ]
 })
 export class LeagueModule {}

@@ -11,15 +11,16 @@ interface AppState {
 }
 
 @Injectable()
-export class LeaguesResolve implements Resolve<any> {
+export class LeagueResolve implements Resolve<any> {
 
   constructor(private leagueService: LeagueService, private store: Store<AppState>) {
 
   }
 
   resolve(route: ActivatedRouteSnapshot) {
-    return this.store.select('user').mergeMap( user => {
-      return this.leagueService.getMyLeagues(user);
-    });
+    return this.leagueService.getLeagueById(route.params['id']);
+    //return this.store.select('user').mergeMap( user => {
+    //  return this.leagueService.getLeague(user);
+    //});
   }
 }

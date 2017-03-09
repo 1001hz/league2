@@ -28,13 +28,13 @@
     </ul>
 
     <div class="menu__avatar-wrapper" (click)="onToggleAccountMenu()">
-      <img src="{{ user.avatar }}" class="menu__image" />
+      <img src="{{ user.avatar.small }}" class="menu__image" />
     </div>
 
     <ul class="menu__list menu__list--account" [ngClass]="{'menu__list--open' : accountMenuOpen}">
       <li class="menu__list-item">
         <div>
-          <img src="{{ user.avatar }}" class="menu__image menu__image--large" />
+          <img src="{{ user.avatar.large }}" class="menu__image menu__image--large" />
         </div>
         <p>
           Hi {{user.info.firstName}}
