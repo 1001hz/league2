@@ -19,7 +19,8 @@ export class UserService {
   user: User;
 
   constructor(private store: Store<AppState>, private apiS: ApiService) {
-    store.select('user').subscribe(u => this.user = u );
+    store.select('user').subscribe( (u:User) => this.user = u );
+
   }
 
   update(user: User) {

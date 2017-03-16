@@ -18,7 +18,7 @@ interface AppState {
 })
 
 export class AccountComponent {
-  public model = new User();
+  public model;
   constructor(private _userService: UserService, private store: Store<AppState>){
 
     store.select('user').subscribe( (u) => {

@@ -44,7 +44,7 @@ export class LeagueService {
     // send data to server
     console.log(league);
 
-    league.id = 1;
+    league.id = "test";
 
     // set in app data store
     this.store.dispatch({ type: ADD_LEAGUE, payload: league });

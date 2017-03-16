@@ -18,7 +18,7 @@ export class ApiService {
   constructor(private store: Store<AppState>, public http: Http) {
 
     // get user for API token parameter
-    store.select('user').subscribe( (u) => this.token = u.token );
+    store.select('user').subscribe( (u:User) => this.token = u.token );
 
     this.apiUrl = 'http://188.166.240.71';
   }
