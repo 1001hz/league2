@@ -1,12 +1,12 @@
 label {
-  display: block;
-  text-transform: uppercase;
-  color: $white;
-  margin-bottom: 8px;
+  //display: block;
+  //text-transform: uppercase;
+  //color: $white;
+  //margin-bottom: 8px;
 }
 
 input[type=text], input[type=password] {
-  padding: 10px;
+  //padding: 10px;
   width: 100%;
 }
 
@@ -18,12 +18,276 @@ input[type=text], input[type=password] {
   }
 
   &__element {
-    padding: 0 0 30px 0;
+    padding: 0 0 50px 0;
   }
 
   &__button-wrapper {
     width: 300px;
     margin: 0 auto;
     text-align: center;
+  }
+}
+
+.form {
+  .input {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    max-width: 350px;
+    width: calc(100% - 2em);
+    vertical-align: top;
+
+    input {
+      position: relative;
+      display: block;
+      //float: right;
+      padding: 0.8em;
+      border-radius: 0;
+      color: #aaa;
+      font-weight: 400;
+      -webkit-appearance: none;
+      width: 100%;
+      background-color: #d0d1d0;
+      border: 2px solid transparent;
+      transition: background-color 0.25s, border-color 0.25s;
+      font-size: 100%;
+      margin: 0;
+
+      &:focus {
+        outline: none;
+        background-color: white;
+        border: solid 2px $primary-red;
+
+        & + label {
+          transform: translate3d(0, 0, 0);
+          color: #fff;
+        }
+      }
+
+    }
+
+    label {
+      display: inline-block;
+      float: right;
+      color: #696969;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      width: 100%;
+      text-align: left;
+      position: absolute;
+      bottom: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      padding: 0 1em;
+      transform: translate3d(0, 34px, 0);
+      transition: transform 0.25s;
+      transition-timing-function: ease-in-out;
+    }
+
+    &.active {
+      & > input {
+        outline: none;
+        background-color: white;
+        border: solid 2px $primary-red;
+      }
+
+      & > label {
+        transform: translate3d(0, 0, 0);
+        color: #fff;
+      }
+    }
+
+  }
+
+  .select {
+    position: relative;
+    z-index: 1;
+    display: inline-block;
+    max-width: 350px;
+    width: calc(100% - 2em);
+    vertical-align: top;
+
+    select {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      max-width: 100%;
+      box-sizing: border-box;
+      width: 100%;
+      cursor: pointer;
+      position: relative;
+      display: block;
+      float: right;
+      padding: 0.8em;
+      border-radius: 0;
+      color: #aaa;
+      font-weight: 400;
+      background-color: #d0d1d0;
+      border: 2px solid transparent;
+      transition: background-color 0.25s, border-color 0.25s;
+      font-size: 100%;
+      margin: 0;
+
+      &:focus {
+        outline: none;
+        background-color: white;
+        border: solid 2px $primary-red;
+
+        & + label {
+          transform: translate3d(0, 0, 0);
+          color: #fff;
+        }
+      }
+    }
+
+    label {
+      display: inline-block;
+      float: right;
+      color: #696969;
+      font-weight: bold;
+      -webkit-font-smoothing: antialiased;
+      user-select: none;
+      width: 100%;
+      text-align: left;
+      position: absolute;
+      bottom: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      padding: 0 1em;
+      transform: translate3d(0, 34px, 0);
+      transition: transform 0.25s;
+      transition-timing-function: ease-in-out;
+    }
+
+    &.active {
+      & > select {
+        outline: none;
+        background-color: white;
+        border: solid 2px $primary-red;
+      }
+
+      & > label {
+        transform: translate3d(0, 0, 0);
+        color: #fff;
+      }
+    }
+
+  }
+
+  .radio {
+    input[type=radio]:checked+label::after{
+      transform: scale(1,1);
+      transition: all 0.2s;
+    }
+    input[type=radio]:checked+label::before{
+      border: 2px solid $primary-red;
+    }
+    input[type=radio] {
+      opacity: 0;
+      position: absolute;
+      top: 12px;
+      left: 23px;
+    }
+    label {
+      cursor: pointer;
+      color: #696969;
+      font-weight: bold;
+      padding: 0;
+      &:before {
+        border: 2px solid #d0d1d0;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: block;
+        float: left;
+        margin-right: 12px;
+        content: '';
+      }
+      &:after {
+        position: absolute;
+        left: 9px;
+        top: 9px;
+        width: 17px;
+        height: 17px;
+        background-color: $primary-red;
+        border-radius: 50%;
+        transform: scale(0,0);
+        content: '';
+        transition: all 0.2s;
+      }
+    }
+  }
+
+
+  .checkbox {
+    position: relative;
+
+    input[type=checkbox]:checked+span{
+      transform: scale(1,1);
+      transition: all 0.2s;
+    }
+    input[type=checkbox]:checked~label{
+      &:before {
+        border: solid 2px $primary-red;
+      }
+    }
+    input[type=checkbox]+span {
+      content: '';
+      display: inline-block;
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      z-index: 1;
+      margin: 9px;
+      background-color: $primary-red;
+      transform: scale(0,0);
+      transition: all 0.2s;
+    }
+    input[type=checkbox] {
+      opacity: 0;
+      position: absolute;
+      left: 0px;
+      width: 40px;
+      height: 40px;
+      top: 0;
+      z-index: 10;
+      cursor: pointer;
+      margin: 0;
+    }
+    label {
+      color: #696969;
+      font-weight: bold;
+      padding: 0 0 0 47px;
+      display: inline-block;
+      position: relative;
+      cursor: pointer;
+
+      &:before {
+        background-color: white;
+        border: solid 2px #d0d1d0;
+        border-radius: 0;
+        width: 35px;
+        height: 35px;
+        display: block;
+        float: left;
+        margin-right: 12px;
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+      span{
+        position: absolute;
+        text-align: center;
+        left: 0;
+        top: 0;
+        width: 35px;
+        height: 35px;
+        color: $primary-red;
+        display: none;
+        transition: all 0.2s;
+        font-size: 34px;
+        line-height: 0;
+      }
+    }
   }
 }

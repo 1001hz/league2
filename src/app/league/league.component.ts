@@ -11,7 +11,9 @@ interface AppState {
 @Component({
   template: `
   <menu [user]="user | async" (logout)="onLogout($event)"></menu>
+  <main class="content">
   <router-outlet></router-outlet>
+  </main>
   `,
   providers: [AuthService]
 })

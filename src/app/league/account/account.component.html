@@ -1,0 +1,65 @@
+
+
+<div class="form__wrapper">
+
+
+  <div>
+    <img src="{{model.avatar.small}}" />
+    <div class="form__element">
+      <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".jpg,.png">
+    </div>
+  </div>
+
+  <form (ngSubmit)="onSubmit($event)" #updateAccountForm="ngForm" class="form" novalidate>
+
+    <div class="form__element">
+      <span class="input active">
+         <input value="{{model.email}}" type="text" disabled>
+         <label for="firstName">
+           Email
+         </label>
+      </span>
+    </div>
+
+    <div class="form__element">
+      <span class="input" [ngClass]="{'active' : model.info.firstName}">
+         <input [(ngModel)]="model.info.firstName" id="firstName" name="firstName" #firstName="ngModel" type="text" required />
+         <label for="firstName">
+           First Name
+         </label>
+      </span>
+      <div [hidden]="firstName.valid || firstName.pristine"
+           class="alert alert-danger">
+        First Name is required
+      </div>
+    </div>
+
+    <div class="form__element">
+      <span class="input" [ngClass]="{'active' : model.info.lastName}">
+         <input [(ngModel)]="model.info.lastName" id="lastName" name="lastName" #lastName="ngModel" type="text" required />
+         <label for="lastName">
+           Last Name
+         </label>
+      </span>
+      <div [hidden]="lastName.valid || lastName.pristine"
+           class="alert alert-danger">
+        Last Name is required
+      </div>
+    </div>
+
+    <div class="form__element">
+      <span class="input" [ngClass]="{'active' : model.password}">
+         <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" type="password" />
+         <label for="lastName">
+           New Password
+         </label>
+      </span>
+    </div>
+
+    <div class="form__button-wrapper">
+      <button [disabled]="!updateAccountForm.form.valid">Update</button>
+    </div>
+
+  </form>
+</div>
+

@@ -11,40 +11,67 @@
   <div *ngIf=" !(isSuccessful) " class="signup__form-wrapper">
     <form (ngSubmit)="onSignup($event)" #signupForm="ngForm" novalidate class="form">
       <div  class="form__element">
-        <label>email</label>
-        <input [(ngModel)]="model.email" id="email" name="email" #email="ngModel" required type="text" />
+        <span class="input" [ngClass]="{'active' : model.email}">
+           <input [(ngModel)]="model.email" id="email" name="email" #email="ngModel" required type="text" />
+           <label for="email">
+             Email
+           </label>
+        </span>
         <div [hidden]="email.valid || email.pristine"
              class="alert alert-danger">
           Email is required
         </div>
       </div>
       <div class="form__element">
-        <label>First Name</label>
-        <input [(ngModel)]="model.info.firstName" id="firstName" name="firstName" #firstName="ngModel" required type="text" />
+        <span class="input" [ngClass]="{'active' : model.info.firstName}">
+           <input [(ngModel)]="model.info.firstName" id="firstName" name="firstName" #firstName="ngModel" required type="text" />
+           <label for="firstName">
+             First Name
+           </label>
+        </span>
         <div [hidden]="firstName.valid || firstName.pristine"
              class="alert alert-danger">
           First Name is required
         </div>
       </div>
       <div class="form__element">
-        <label>Last Name</label>
-        <input [(ngModel)]="model.info.lastName" id="lastName" name="lastName" #lastName="ngModel" required type="text" />
+        <span class="input" [ngClass]="{'active' : model.info.lastName}">
+           <input [(ngModel)]="model.info.lastName" id="lastName" name="lastName" #lastName="ngModel" required type="text" />
+           <label for="lastName">
+             Last Name
+           </label>
+        </span>
         <div [hidden]="lastName.valid || lastName.pristine"
              class="alert alert-danger">
           Last Name is required
         </div>
       </div>
       <div class="form__element">
-        <label>Password</label>
-        <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" required type="password" />
+        <span class="input" [ngClass]="{'active' : model.password}">
+           <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" required type="password" />
+           <label for="password">
+             Password
+           </label>
+        </span>
         <div [hidden]="password.valid || password.pristine"
              class="alert alert-danger">
           Password is required
         </div>
       </div>
       <div class="form__element">
-        <label>Country</label>
+         <span class="select">
+           <select [(ngModel)]="model.info.country" id="country" name="country" #country="ngModel" required>
+             <option selected disabled hidden></option>
+             <option>One</option>
+             <option>Two</option>
+           </select>
+           <label for="country">
+             Country
+           </label>
+        </span>
+        <!--
         <input [(ngModel)]="model.info.country" id="country" name="country" #country="ngModel" required type="text" />
+        -->
         <div [hidden]="country.valid || country.pristine"
              class="alert alert-danger">
           Country is required

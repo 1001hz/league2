@@ -13,6 +13,7 @@ export class User {
 
   makeFromServer(serverObj) {
     this.id = serverObj.id;
+    console.log(serverObj);
     this.email = serverObj.email;
 
     this.avatar = new Avatar();

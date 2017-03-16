@@ -23,6 +23,17 @@ export class ApiService {
     this.apiUrl = 'http://188.166.240.71';
   }
 
+  postFileApi(endpoint, formData:FormData) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json');
+    headers.append('X-Access-Token', this.token);
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post(this.apiUrl + endpoint, formData, options)
+      .map(res => res.json())
+      .catch(error => Observable.throw(error));
+  }
+
   getApi(endpoint, isPrivate:boolean = true) {
 
     this.headers = new Headers({ 'Content-Type': 'application/json' });

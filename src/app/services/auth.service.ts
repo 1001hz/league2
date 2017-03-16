@@ -7,7 +7,7 @@ import { League } from '../models/league.model';
 // state
 import { Observable } from 'rxjs/Rx';
 import { Store } from '@ngrx/store';
-import { SET_USER, RESET_USER } from '../reducers/user.reducer';
+import { SET_USER, RESET_USER, UPDATE_USER } from '../reducers/user.reducer';
 import { ADD_LEAGUE } from '../reducers/leagues.reducer';
 // services
 import { ApiService } from './api.service';
@@ -55,16 +55,6 @@ export class AuthService {
     var authenticate$ = this.apiS.postApi('/authenticate', credentials, false)
       .flatMap((response) => {
 
-        // create user object from returned data
-        //var user = new User(
-        //  response.user.id,
-        //  null,
-        //  response.user.info.firstName,
-        //  response.user.info.lastName,
-        //  null,
-        //  response.user.avatar.small,
-        //  response.token
-        //);
         var user = new User();
         user.makeFromServer(response.user);
         user.setToken(response.token);
@@ -81,6 +71,12 @@ export class AuthService {
 
     // subscribe to observible to call it
     authenticate$.subscribe( user => {
+
+
+      // store user
+      var _user = new User();
+      _user.makeFromServer(user);
+      this.store.dispatch({ type: UPDATE_USER, payload: _user });
 
       user.ownedLeagues.map(league => {
         // extract user's leagues from user data

@@ -3,16 +3,24 @@
   <div *ngIf="!(user | async)?.id" class="form__wrapper">
     <form (ngSubmit)="onSubmit($event)" #loginForm="ngForm" novalidate class="form">
       <div class="form__element">
-        <label>email</label>
-        <input [(ngModel)]="model.email" id="email" name="email" #email="ngModel" type="text" required />
+        <span class="input" [ngClass]="{'active' : model.email}">
+           <input [(ngModel)]="model.email" id="email" name="email" #email="ngModel" type="text" required />
+           <label for="email">
+             Email
+           </label>
+        </span>
         <div [hidden]="email.valid || email.pristine"
              class="alert alert-danger">
-          Name is required
+          Email is required
         </div>
       </div>
       <div class="form__element">
-        <label>Password</label>
-        <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" type="password" required />
+        <span class="input" [ngClass]="{'active' : model.password}">
+           <input [(ngModel)]="model.password" id="password" name="password" #password="ngModel" type="password" required />
+           <label for="password">
+             Password
+           </label>
+        </span>
         <div [hidden]="password.valid || password.pristine"
              class="alert alert-danger">
           Password is required
